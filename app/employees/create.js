@@ -1,24 +1,4 @@
 $(document).ready(function () {
-    $(document).on('submit', '#form-create-employee', function () {
-        var employeeFormData = JSON.stringify($(this).serializeObject());
-
-        $.ajax({
-            url: 'employee/create.php',
-            type: 'POST',
-            contentType: 'application/json',
-            data: employeeFormData,
-            success: function (result) {
-                // Go back to Employees list
-                showEmployees();
-            },
-            error: function (xhr, resp, text) {
-                console.log(xhr, resp, text);
-            }
-        });
-
-        return false;
-    });
-
     // Show the Create Employee form after clicking the 'Create Employee' button
     $(document).on('click', '.create-employee-button', function () {
         var create_employee_htm = "";
@@ -60,5 +40,25 @@ $(document).ready(function () {
 
         // Update page title
         changePageTitle('Create Employee');
+    });
+
+    $(document).on('submit', '#form-create-employee', function () {
+        var employeeFormData = JSON.stringify($(this).serializeObject());
+
+        $.ajax({
+            url: 'employee/create.php',
+            type: 'POST',
+            contentType: 'application/json',
+            data: employeeFormData,
+            success: function (result) {
+                // Go back to Employees list
+                showEmployees();
+            },
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        });
+
+        return false;
     });
 });
